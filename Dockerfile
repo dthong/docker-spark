@@ -25,8 +25,9 @@ RUN yum -y install R
 RUN curl -s https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -o anaconda.sh
 RUN chmod a+x anaconda.sh
 RUN ./anaconda.sh -b
-RUN /root/miniconda2/bin/conda install -y -q scipy numpy scikit-learn scikit-image nose pandas matplotlib seaborn arrow nltk pip ipython notebook
+RUN /root/miniconda2/bin/conda install -y -q scipy numpy scikit-learn scikit-image nose pandas matplotlib seaborn nltk pip ipython notebook
 RUN /root/miniconda2/bin/pip install gensim
+RUN /root/miniconda2/bin/pip install arrow
 RUN /root/miniconda2/bin/python -m nltk.downloader wordnet stopwords words maxent_ne_chunker punkt
 
 # install python packages
