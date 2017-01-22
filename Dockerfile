@@ -28,19 +28,19 @@ RUN ./anaconda.sh -b
 RUN /root/miniconda2/bin/conda install -y -q scipy numpy scikit-learn scikit-image nose pandas matplotlib seaborn nltk pip ipython notebook
 RUN /root/miniconda2/bin/pip install gensim
 RUN /root/miniconda2/bin/pip install arrow
+RUN /root/miniconda2/bin/pip install google-apputils
+RUN /root/miniconda2/bin/pip install python-gflags
+RUN /root/miniconda2/bin/pip install ftfy
 RUN /root/miniconda2/bin/python -m nltk.downloader wordnet stopwords words maxent_ne_chunker punkt
 
 # install python packages
-RUN pip install google-apputils
-RUN pip install python-gflags
-RUN pip install arrow
-RUN pip install gensim
-RUN pip install ftfy
 
 #Environment vaiables for Spark to use Anaconda Python and iPython notebook
 ENV PYSPARK_PYTHON /root/miniconda2/bin/python
 ENV PYSPARK_DRIVER_PYTHON /root/miniconda2/bin/ipython
 ENV PYSPARK_DRIVER_PYTHON_OPTS "notebook --no-browser --port=8888 --ip='*'"
+
+ENV PATH=/root/miniconda2/bin:$PATH
 
 
 ENTRYPOINT ["/etc/bootstrap.sh"]
