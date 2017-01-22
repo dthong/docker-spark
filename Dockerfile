@@ -31,7 +31,7 @@ RUN /root/miniconda2/bin/pip install arrow
 RUN /root/miniconda2/bin/pip install google-apputils
 RUN /root/miniconda2/bin/pip install python-gflags
 RUN /root/miniconda2/bin/pip install ftfy
-RUN /root/miniconda2/bin/python -m nltk.downloader wordnet stopwords words maxent_ne_chunker punkt
+RUN /root/miniconda2/bin/python -m nltk.downloader stopwords words punkt
 
 # install python packages
 
