@@ -21,20 +21,13 @@ RUN chmod 700 /etc/bootstrap.sh
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN yum -y install R
 
-# install Python 2.7 and packages
-#RUN yum install centos-release-scl \
-  #&& yum-config-manager --enable rhel-server-rhscl-7-rpms \
-  #&& yum install python27 \
-  #&& scl enable python27 bash \
-  #&& pip install --upgrade pip
-
 # install anaconda packages
 RUN curl -s https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -o anaconda.sh
 RUN chmod a+x anaconda.sh
 RUN ./anaconda.sh -b
-RUN /root/anaconda2/bin/conda install -y -q scipy numpy scikit-learn scikit-image nose pandas matplotlib seaborn arrow nltk pip ipython notebook
-RUN /root/anaconda2/bin/pip install gensim
-RUN /root/anaconda2/bin/python -m nltk.downloader wordnet stopwords words maxent_ne_chunker
+RUN /root/miniconda2/bin/conda install -y -q scipy numpy scikit-learn scikit-image nose pandas matplotlib seaborn arrow nltk pip ipython notebook
+RUN /root/miniconda2/bin/pip install gensim
+RUN /root/miniconda2/bin/python -m nltk.downloader wordnet stopwords words maxent_ne_chunker punkt
 
 # install python packages
 RUN pip install google-apputils
@@ -44,8 +37,8 @@ RUN pip install gensim
 RUN pip install ftfy
 
 #Environment vaiables for Spark to use Anaconda Python and iPython notebook
-ENV PYSPARK_PYTHON /root/anaconda2/bin/python
-ENV PYSPARK_DRIVER_PYTHON /root/anaconda2/bin/ipython
+ENV PYSPARK_PYTHON /root/miniconda2/bin/python
+ENV PYSPARK_DRIVER_PYTHON /root/miniconda2/bin/ipython
 ENV PYSPARK_DRIVER_PYTHON_OPTS "notebook --no-browser --port=8888 --ip='*'"
 
 
