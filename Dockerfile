@@ -42,7 +42,4 @@ ENV PYSPARK_DRIVER_PYTHON_OPTS "notebook --no-browser --port=8888 --ip='*'"
 
 ENV PATH=/root/miniconda2/bin:$PATH
 
-# install readpst for processing Microsoft Exchange PST files
-RUN yum -y install readpst
-
 ENTRYPOINT ["/etc/bootstrap.sh"]
