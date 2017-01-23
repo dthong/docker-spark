@@ -31,9 +31,9 @@ RUN /root/miniconda2/bin/pip install arrow
 RUN /root/miniconda2/bin/pip install google-apputils
 RUN /root/miniconda2/bin/pip install python-gflags
 RUN /root/miniconda2/bin/pip install ftfy
-RUN /root/miniconda2/bin/python -m nltk.downloader stopwords words punkt
-
-# install python packages
+RUN /root/miniconda2/bin/python -m nltk.downloader stopwords
+RUN /root/miniconda2/bin/python -m nltk.downloader words
+RUN /root/miniconda2/bin/python -m nltk.downloader punkt
 
 #Environment vaiables for Spark to use Anaconda Python and iPython notebook
 ENV PYSPARK_PYTHON /root/miniconda2/bin/python
@@ -42,5 +42,7 @@ ENV PYSPARK_DRIVER_PYTHON_OPTS "notebook --no-browser --port=8888 --ip='*'"
 
 ENV PATH=/root/miniconda2/bin:$PATH
 
+# install readpst for processing Microsoft Exchange PST files
+RUN yum -y install readpst
 
 ENTRYPOINT ["/etc/bootstrap.sh"]
