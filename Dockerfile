@@ -31,6 +31,8 @@ RUN /root/miniconda2/bin/pip install arrow
 RUN /root/miniconda2/bin/pip install google-apputils
 RUN /root/miniconda2/bin/pip install python-gflags
 RUN /root/miniconda2/bin/pip install ftfy
+RUN /root/miniconda2/bin/pip install openpyxl
+RUN /root/miniconda2/bin/pip install stopwords
 RUN /root/miniconda2/bin/python -m nltk.downloader stopwords
 RUN /root/miniconda2/bin/python -m nltk.downloader words
 RUN /root/miniconda2/bin/python -m nltk.downloader punkt
